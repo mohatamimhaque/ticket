@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Dropdown</title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 250px;
+        }
+
+        .dropdown-list {
+            position: absolute;
+            width: 100%;
+            border: 1px solid #ccc;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            z-index: 1000;
+        }
+
+        .dropdown-list li {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .dropdown-list li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dropdown">
+        <input type="text" id="inputBox" placeholder="Type station name..." autocomplete="off">
+        <ul id="dropdownList" class="dropdown-list"></ul>
+    </div>
+
+    <script>
+        const inputBox = document.getElementById('inputBox');
+        const dropdownList = document.getElementById('dropdownList');
+        let stations = [];
+
+        fetch('station.json')
+            .then(response => response.json())
+            .then(data => {
+                stations = data.stations; // Store fetched station names
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+
+        inputBox.addEventListener('input', function () {
+            const query = inputBox.value.toLowerCase();
+            dropdownList.innerHTML = ''; // Clear previous results
+
+            if (query) {
+                const filteredStations = stations.filter(station => station.toLowerCase().includes(query));
+                if (filteredStations.length > 0) {
+                    dropdownList.style.display = 'block';
+                    filteredStations.forEach(station => {
+                        const li = document.createElement('li');
+                        li.textContent = station;
+                        li.addEventListener('click', function () {
+                            inputBox.value = station; // Fill input with selected station
+                            dropdownList.style.display = 'none';
+                        });
+                        dropdownList.appendChild(li);
+                    });
+                } else {
+                    dropdownList.style.display = 'none';
+                }
+            } else {
+                dropdownList.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!inputBox.contains(event.target) && !dropdownList.contains(event.target)) {
+                dropdownList.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>

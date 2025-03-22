@@ -1,0 +1,79 @@
+form title name = Train Booking Information
+label list
+1.label name phone number, input type text
+2.label name passoword, input type passowrord add toggle button password show or hide
+3. label name origin station, input type text  when type on input file station name suggest from a file which name is station.json,
+when click on suggets station name input box filled with clicked station name and suggestion hide.
+station.json format as
+{
+    "stations": [
+        "Abdulpur",
+        "Aditmari",
+        "Ahsanganj",
+        "Akhanagar",
+        "Akhaura",
+        "Akkelpur",
+        "Alamdanga",
+        "Amirabad",
+        "Amnura",
+    ]
+}
+4. label name destination station, input type text  when type on input file station name suggest from a file which name is station.json,
+when click on suggets station name input box filled with clicked station name and suggestion hide.
+station.json format as
+{
+    "stations": [
+        "Abdulpur",
+        "Aditmari",
+        "Ahsanganj",
+        "Akhanagar",
+        "Akhaura",
+        "Akkelpur",
+        "Alamdanga",
+        "Amirabad",
+        "Amnura",
+    ]
+}
+
+5.label name Journey date ,input type calender
+6.label name seat class, input type select box option ={"AC_B": "AC_B", "AC_S": "AC_S", "SNIGDHA": "SNIGDHA", "F_BERTH": "F_BERTH", "F_SEAT": "F_SEAT", "F_CHAIR": "F_CHAIR", "S_CHAIR": "S_CHAIR", "SHOVAN": "SHOVAN", "SHULOV": "SHULOV", "AC_CHAIR": "AC_CHAIR"}
+
+7. label train name, input type text  when type on input file train name suggest from a file which name is train.json,
+when click on suggets train name "format :train_name(train_number) input box filled with clicked train name and suggestion hide.
+train.json file format as
+{
+    "701": "Subarna Express",
+    "702": "Subarna Express",
+    "703": "Mohanagar Goduli",
+    "704": "Mohanagar Provati",
+    "705": "Ekota Express",
+    "706": "Ekota Express",
+    "707": "Tista Express",
+}
+add train search option
+
+8. label name seat type select box option 1 to 4
+
+
+
+when click on submit button create a dictionary
+name  is train_booking_info
+add keys
+1.mobile_number: value of 1st label
+2.passoword :value of 2nd label
+3.from_station : value of 3rd label
+4.to_station : value of 4th label
+5.journey_date: value of 5th label (format example : 16-Mar-2025")
+6.seat class : value of 6th label(format example :SNIGDHA")
+7.train_number:value of 7th label (format example : 705)
+8.seat:value of 8th label
+9.desired_seats : blank list
+
+
+when click on journey date then calender show otherwise hide after select date just show selected date and calender hide, add all input's same property means same width,height,padding,margin,font size, all field is reuired add red mark * if all field select then submit button active otherwise disbale, when click on submit button form will hide
+all suggest tab index will be top
+
+
+add attaractive style
+
+create a python gui form
